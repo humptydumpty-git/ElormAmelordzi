@@ -219,20 +219,23 @@ Beyond my professional endeavors, I am a Man of God, dedicated to living a purpo
                 
                 <div class="contact-form">
                     <h3>Send me a message</h3>
-                    <form class="form">
+                    <!-- replace YOUR_FORMSPREE_ID with the id Formspree gives you -->
+                    <form id="contact-form" class="form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
                         <div class="form-group">
                             <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <!-- Formspree expects the reply-to address in _replyto -->
+                            <input type="email" id="email" name="_replyto" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            <!-- use _subject so Formspree uses it as the email subject -->
+                            <input type="text" id="subject" name="_subject" placeholder="Subject" required>
                         </div>
                         <div class="form-group">
                             <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="humptyisme@gmail.com">Send Message</button>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -286,11 +289,33 @@ Beyond my professional endeavors, I am a Man of God, dedicated to living a purpo
             }
         });
 
-        // Form submission
-        document.querySelector('.form').addEventListener('submit', function(e) {
+        // Formspree AJAX submit (no page reload). Replace YOUR_FORMSPREE_ID in the form action.
+        document.getElementById('contact-form').addEventListener('submit', async function (e) {
             e.preventDefault();
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            this.reset();
+            const form = e.target;
+            const action = form.getAttribute('action');
+            const data = new FormData(form);
+
+            try {
+                const res = await fetch(action, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (res.ok) {
+                    alert('Thanks — your message has been sent!');
+                    form.reset();
+                } else {
+                    const json = await res.json();
+                    const err = (json && json.errors) ? json.errors.map(e => e.message).join(', ') : 'Submission failed';
+                    alert('Error: ' + err);
+                }
+            } catch (err) {
+                alert('Network error. Please try again later.');
+            }
         });
     </script>
 </body>
