@@ -1,10 +1,15 @@
-exac<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elorm Kofi Amelordzi — Portfolio</title>
     <meta name="description" content="Elorm Kofi Amelordzi — web developer & designer. Projects, skills, and contact.">
+
+    <!-- Content Security Policy (adjust origins if you host assets elsewhere) -->
+    <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self'; connect-src 'self' https://formspree.io; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none';">
+
     <meta property="og:title" content="Elorm Kofi Amelordzi — Portfolio">
     <meta property="og:description" content="Web developer & designer. See projects, case studies, and contact.">
     <meta property="og:image" content="Esyl.jpg">
@@ -12,7 +17,8 @@ exac<!DOCTYPE html>
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:creator" content="@your_twitter">
     <link rel="stylesheet" href="portfolio.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- add crossorigin; add integrity attribute if you compute SRI for your exact file version -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -82,7 +88,7 @@ exac<!DOCTYPE html>
                 <div class="about-text">
                     <h3>Hello! I'm Elorm Kofi Amelordzi</h3>
                     <p>
-am Elorm Kofi Amelordzi, a versatile and results-driven professional with expertise in Graphic Design, Web Design, and Web Development. I specialize in creating visually appealing and user-focused digital solutions that align creativity with functionality.
+I am Elorm Kofi Amelordzi, a versatile and results-driven professional with expertise in Graphic Design, Web Design, and Web Development. I specialize in creating visually appealing and user-focused digital solutions that align creativity with functionality.
 
 With a strong background in Computer Networks Management, I bring a solid understanding of system infrastructure, network security, and IT operations—skills that enhance my effectiveness as a modern designer and developer.
                     </p>
@@ -90,12 +96,9 @@ With a strong background in Computer Networks Management, I bring a solid unders
                         My journey into web development is driven by my love for learning new things and 
                         creating digital solutions that can make a difference. I believe in continuous 
                         learning and staying updated with the latest technologies.
-
-
                     </p>
-                    <P>   In addition to my technical and creative work, I serve as a Credit Officer, applying analytical thinking, integrity, and attention to detail in financial operations and client relations.
-
-Beyond my professional endeavors, I am a Man of God, dedicated to living a purpose-driven life grounded in faith, service, and leadership. My mission is to use my gifts and knowledge to impact lives positively—both in the digital space and in the Kingdom of God.</P>
+                    <p>In addition to my technical and creative work, I serve as a Credit Officer, applying analytical thinking, integrity, and attention to detail in financial operations and client relations.</p>
+                    <p>Beyond my professional endeavors, I am a Man of God, dedicated to living a purpose-driven life grounded in faith, service, and leadership. My mission is to use my gifts and knowledge to impact lives positively—both in the digital space and in the Kingdom of God.</p>
                     
                     <div class="interests">
                         <h4>My Interests</h4>
@@ -210,16 +213,16 @@ Beyond my professional endeavors, I am a Man of God, dedicated to living a purpo
                     <div class="social-links">
                         <h4>Connect with me</h4>
                         <div class="social-icons">
-                            <a href="https://www.linkedin.com/in/elorm-kofi-amelordzi-3b4b00210" target="_blank" class="social-link">
+                            <a href="https://www.linkedin.com/in/elorm-kofi-amelordzi-3b4b00210" target="_blank" rel="noopener" class="social-link">
                                 <i class="fab fa-linkedin"></i>
                             </a>
-                            <a href="#" class="social-link">
+                            <a href="#" class="social-link" rel="noopener">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="#" class="social-link">
+                            <a href="#" class="social-link" rel="noopener">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="https://mail.google.com/mail/u/0/#inbox" class="social-link">
+                            <a href="mailto:hello@yourdomain.com" class="social-link">
                                 <i class="fas fa-envelope"></i>
                             </a>
                         </div>
@@ -246,6 +249,7 @@ Beyond my professional endeavors, I am a Man of God, dedicated to living a purpo
                         </div>
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
+                    <p class="form-note">Note: replace the Formspree form ID in the form action or provide a resume.pdf and live links for Projects.</p>
                 </div>
             </div>
         </div>
@@ -261,71 +265,6 @@ Beyond my professional endeavors, I am a Man of God, dedicated to living a purpo
         </div>
     </footer>
 
-    <script>
-        // Mobile Navigation Toggle
-        const navToggle = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
-
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                }
-            });
-        });
-
-        // Add scroll effect to navbar
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Formspree AJAX submit (no page reload). Replace YOUR_FORMSPREE_ID in the form action.
-        document.getElementById('contact-form').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const form = e.target;
-            const action = form.getAttribute('action');
-            const data = new FormData(form);
-
-            try {
-                const res = await fetch(action, {
-                    method: 'POST',
-                    body: data,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (res.ok) {
-                    alert('Thanks — your message has been sent!');
-                    form.reset();
-                } else {
-                    const json = await res.json();
-                    const err = (json && json.errors) ? json.errors.map(e => e.message).join(', ') : 'Submission failed';
-                    alert('Error: ' + err);
-                }
-            } catch (err) {
-                alert('Network error. Please try again later.');
-            }
-        });
-    </script>
+    <script src="app.js" defer></script>
 </body>
 </html>
