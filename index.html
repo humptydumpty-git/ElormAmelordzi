@@ -266,10 +266,23 @@ With a strong background in Computer Networks Management, I bring a solid unders
                 <p class="section-subtitle">Some of my recent work</p>
             </div>
 
+            <!-- Project Filter Buttons -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="app">Web App</button>
+                <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+                <button class="filter-btn" data-filter="javascript">JavaScript</button>
+            </div>
+
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card" data-category="web javascript">
                     <div class="project-image">
                         <img src="project1.jpg" alt="Portfolio Website" onerror="this.src='https://via.placeholder.com/600x400/2563eb/ffffff?text=Portfolio+Website'">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>Personal Portfolio</h3>
@@ -286,9 +299,13 @@ With a strong background in Computer Networks Management, I bring a solid unders
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-category="web app javascript fullstack">
                     <div class="project-image">
                         <img src="project2.jpg" alt="E-commerce Website" onerror="this.src='https://via.placeholder.com/600x400/7c3aed/ffffff?text=E-commerce+Site'">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>E-commerce Website</h3>
@@ -306,9 +323,13 @@ With a strong background in Computer Networks Management, I bring a solid unders
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-category="app fullstack">
                     <div class="project-image">
                         <img src="project3.jpg" alt="Blog Platform" onerror="this.src='https://via.placeholder.com/600x400/10b981/ffffff?text=Blog+Platform'">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>Blog Platform</h3>
@@ -325,6 +346,34 @@ With a strong background in Computer Networks Management, I bring a solid unders
                         </div>
                     </div>
                 </div>
+
+                <!-- Add more project cards as needed -->
+                <div class="project-card" data-category="web javascript">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/600x400/3b82f6/ffffff?text=Weather+App" alt="Weather App">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Weather App</h3>
+                        <p>A real-time weather application that displays current weather and forecast using a weather API.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">View Project</a>
+                            <a href="#" class="btn btn-small btn-outline">Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="#" class="btn btn-primary">View All Projects</a>
             </div>
         </div>
     </section>
@@ -484,6 +533,143 @@ With a strong background in Computer Networks Management, I bring a solid unders
                 behavior: 'smooth'
             });
         });
+
+        // Project Filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                            card.style.display = 'block';
+                            // Add animation class
+                            card.style.animation = 'fadeIn 0.5s ease-in-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Testimonial Slider
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.querySelector('.testimonial-nav-btn.prev');
+            const nextBtn = document.querySelector('.testimonial-nav-btn.next');
+            let currentSlide = 0;
+            const totalSlides = testimonialCards.length;
+
+            // Show first testimonial by default
+            updateTestimonial(0);
+
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateTestimonial(currentSlide);
+                });
+            });
+
+            // Previous button
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateTestimonial(currentSlide);
+            });
+
+            // Next button
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateTestimonial(currentSlide);
+            });
+
+            // Auto-advance testimonials every 5 seconds
+            let slideInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateTestimonial(currentSlide);
+            }, 5000);
+
+            // Pause auto-advance on hover
+            const testimonialsContainer = document.querySelector('.testimonials-container');
+            testimonialsContainer.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+
+            testimonialsContainer.addEventListener('mouseleave', () => {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(() => {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateTestimonial(currentSlide);
+                }, 5000);
+            });
+
+            function updateTestimonial(index) {
+                // Hide all testimonials
+                testimonialCards.forEach(card => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                });
+                
+                // Show current testimonial
+                setTimeout(() => {
+                    testimonialCards[index].style.display = 'block';
+                    setTimeout(() => {
+                        testimonialCards[index].style.opacity = '1';
+                        testimonialCards[index].style.transform = 'translateX(0)';
+                    }, 50);
+                }, 300);
+                
+                // Update dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                
+                // Update current slide
+                currentSlide = index;
+            }
+        });
+
+        // Add animation for project cards
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            .project-card {
+                animation: fadeIn 0.5s ease-out forwards;
+                opacity: 0;
+            }
+            
+            .testimonial-card {
+                transition: all 0.5s ease-in-out;
+            }
+            
+            @media (max-width: 767px) {
+                .testimonials-container {
+                    scroll-snap-type: x mandatory;
+                    -webkit-overflow-scrolling: touch;
+                    scroll-behavior: smooth;
+                }
+                
+                .testimonial-card {
+                    scroll-snap-align: start;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
