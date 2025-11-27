@@ -30,40 +30,6 @@
     box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
 }
 
-/* Project Cards */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.project-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.project-image {
-    position: relative;
-    overflow: hidden;
-    height: 200px;
-}
-
-.project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
 .project-overlay {
     position: absolute;
     top: 0;
@@ -100,43 +66,6 @@
     background: white;
     color: #2563eb;
     transform: translateY(-3px);
-}
-
-.project-content {
-    padding: 20px;
-}
-
-.project-content h3 {
-    margin: 0 0 10px;
-    color: #1f2937;
-    font-size: 1.25rem;
-}
-
-.project-content p {
-    color: #6b7280;
-    font-size: 0.95rem;
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-
-.project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 15px;
-}
-
-.project-tags span {
-    background: #e0f2fe;
-    color: #0369a1;
-    font-size: 0.75rem;
-    padding: 3px 10px;
-    border-radius: 15px;
-}
-
-.project-links {
-    display: flex;
-    gap: 10px;
 }
 
 /* Testimonials Section */
