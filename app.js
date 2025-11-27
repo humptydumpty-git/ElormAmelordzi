@@ -352,6 +352,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Animate skill progress bars when in viewport
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const progressBars = entry.target.querySelectorAll('.skill-progress');
+        progressBars.forEach(bar => {
+          const progress = bar.getAttribute('data-progress');
+          setTimeout(() => {
+            bar.style.width = progress + '%';
+          }, 200);
+        });
+        skillObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const skillsSection = document.querySelector('.skills-section');
+  if (skillsSection) {
+    skillObserver.observe(skillsSection);
+  }
+
   // Add animation for project cards and testimonials
   const style = document.createElement('style');
   style.textContent = `
