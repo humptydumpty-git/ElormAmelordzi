@@ -158,6 +158,200 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Contact Form Validation and Submission
+  const contactForm = document.getElementById('contact-form');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Clear previous errors
+      clearErrors();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const name = formData.get('name').trim();
+      const email = formData.get('email').trim();
+      const subject = formData.get('subject').trim();
+      const message = formData.get('message').trim();
+      
+      // Validate form
+      let isValid = true;
+      
+      if (!name) {
+        showError('name', 'Please enter your name');
+        isValid = false;
+      } else if (name.length < 2) {
+        showError('name', 'Name must be at least 2 characters');
+        isValid = false;
+      }
+      
+      if (!email) {
+        showError('email', 'Please enter your email');
+        isValid = false;
+      } else if (!isValidEmail(email)) {
+        showError('email', 'Please enter a valid email address');
+        isValid = false;
+      }
+      
+      if (!message) {
+        showError('message', 'Please enter your message');
+        isValid = false;
+      } else if (message.length < 10) {
+        showError('message', 'Message must be at least 10 characters');
+        isValid = false;
+      }
+      
+      if (!isValid) {
+        return;
+      }
+      
+      // Show loading state
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const btnLoading = submitBtn.querySelector('.btn-loading');
+      
+      submitBtn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline-flex';
+      
+      // Create email content
+      const emailContent = {
+        to: 'humptyisme@gmail.com',
+        subject: subject || `Portfolio Contact from ${name}`,
+        body: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+      };
+      
+      try {
+        // Create mailto link and open it
+        const mailtoLink = `mailto:${emailContent.to}?subject=${encodeURIComponent(emailContent.subject)}&body=${encodeURIComponent(emailContent.body)}`;
+        window.location.href = mailtoLink;
+        
+        // Show success message
+        showStatus('success', 'Thank you for your message! Your email client has been opened to send the message.');
+        
+        // Reset form
+        this.reset();
+        
+      } catch (error) {
+        console.error('Error sending message:', error);
+        showStatus('error', 'Sorry, there was an error sending your message. Please try again.');
+      } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+      }
+    });
+    
+    // Real-time validation
+    const inputs = contactForm.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+      input.addEventListener('blur', function() {
+        validateField(this);
+      });
+      
+      input.addEventListener('input', function() {
+        if (this.classList.contains('error')) {
+          validateField(this);
+        }
+      });
+    });
+  }
+  
+  function validateField(field) {
+    const fieldName = field.name;
+    const value = field.value.trim();
+    
+    clearError(fieldName);
+    
+    switch (fieldName) {
+      case 'name':
+        if (!value) {
+          showError(fieldName, 'Please enter your name');
+          return false;
+        } else if (value.length < 2) {
+          showError(fieldName, 'Name must be at least 2 characters');
+          return false;
+        }
+        break;
+        
+      case 'email':
+        if (!value) {
+          showError(fieldName, 'Please enter your email');
+          return false;
+        } else if (!isValidEmail(value)) {
+          showError(fieldName, 'Please enter a valid email address');
+          return false;
+        }
+        break;
+        
+      case 'message':
+        if (!value) {
+          showError(fieldName, 'Please enter your message');
+          return false;
+        } else if (value.length < 10) {
+          showError(fieldName, 'Message must be at least 10 characters');
+          return false;
+        }
+        break;
+    }
+    
+    return true;
+  }
+  
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  
+  function showError(fieldName, message) {
+    const field = document.querySelector(`[name="${fieldName}"]`);
+    if (field) {
+      field.classList.add('error');
+      const errorElement = field.parentElement.querySelector('.error-message');
+      if (errorElement) {
+        errorElement.textContent = message;
+      }
+    }
+  }
+  
+  function clearError(fieldName) {
+    const field = document.querySelector(`[name="${fieldName}"]`);
+    if (field) {
+      field.classList.remove('error');
+      const errorElement = field.parentElement.querySelector('.error-message');
+      if (errorElement) {
+        errorElement.textContent = '';
+      }
+    }
+  }
+  
+  function clearErrors() {
+    const fields = document.querySelectorAll('.contact-form input, .contact-form textarea');
+    fields.forEach(field => {
+      field.classList.remove('error');
+      const errorElement = field.parentElement.querySelector('.error-message');
+      if (errorElement) {
+        errorElement.textContent = '';
+      }
+    });
+  }
+  
+  function showStatus(type, message) {
+    const statusElement = document.getElementById('form-status');
+    if (statusElement) {
+      statusElement.className = `form-status ${type}`;
+      statusElement.textContent = message;
+      statusElement.style.display = 'block';
+      
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        statusElement.style.display = 'none';
+      }, 5000);
+    }
+  }
+
   // Add animation for project cards and testimonials
   const style = document.createElement('style');
   style.textContent = `
