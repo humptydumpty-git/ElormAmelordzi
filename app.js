@@ -1,30 +1,13 @@
 // Main portfolio JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Smooth scrolling for navigation links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (!href || href === '#') return;
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        window.scrollTo({
-          top: target.offsetTop - 80, // Adjust for fixed header
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-link');
   const backToTopButton = document.getElementById('back-to-top');
   const navbar = document.querySelector('.navbar');
 
   // Mobile navigation toggle
   const navToggle = document.getElementById('nav-toggle');
   const navMenu = document.getElementById('nav-menu');
+  const navLinks = document.querySelectorAll('.nav-link');
 
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
@@ -41,24 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Unified scroll handler: active nav + back-to-top + navbar style
+  // Scroll handler: back-to-top visibility + navbar style
   window.addEventListener('scroll', () => {
-    let current = '';
     const scrollY = window.pageYOffset;
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      if (scrollY >= sectionTop - 100) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (current && link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
 
     if (backToTopButton) {
       if (scrollY > 300) {
