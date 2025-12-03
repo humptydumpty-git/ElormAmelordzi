@@ -4,10 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToTopButton = document.getElementById('back-to-top');
   const navbar = document.querySelector('.navbar');
 
+  // Active navigation link highlighting
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const navLinks = document.querySelectorAll('.nav-link');
+  
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute('href');
+    if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
+
   // Mobile navigation toggle
   const navToggle = document.getElementById('nav-toggle');
   const navMenu = document.getElementById('nav-menu');
-  const navLinks = document.querySelectorAll('.nav-link');
 
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
@@ -215,24 +225,34 @@ document.addEventListener('DOMContentLoaded', () => {
       btnText.style.display = 'none';
       btnLoading.style.display = 'inline-flex';
       
-      // Create email content
-      const emailContent = {
-        to: 'humptyisme@gmail.com',
-        subject: subject || `Portfolio Contact from ${name}`,
-        body: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-      };
-      
+      // Submit to Formspree
       try {
-        // Create mailto link and open it
-        const mailtoLink = `mailto:${emailContent.to}?subject=${encodeURIComponent(emailContent.subject)}&body=${encodeURIComponent(emailContent.body)}`;
-        window.location.href = mailtoLink;
+        const formAction = this.getAttribute('action');
+        if (!formAction || formAction.includes('YOUR_FORM_ID')) {
+          showStatus('error', 'Form is not configured. Please set up Formspree form ID in contact.html');
+          return;
+        }
         
-        // Show success message
-        showStatus('success', 'Thank you for your message! Your email client has been opened to send the message.');
+        const formData = new FormData(this);
+        const response = await fetch(formAction, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
         
-        // Reset form
-        this.reset();
-        
+        if (response.ok) {
+          showStatus('success', 'Thank you for your message! I\'ll get back to you soon.');
+          this.reset();
+        } else {
+          const data = await response.json();
+          if (data.errors) {
+            showStatus('error', data.errors.map(error => error.message).join(', '));
+          } else {
+            showStatus('error', 'Sorry, there was an error sending your message. Please try again.');
+          }
+        }
       } catch (error) {
         console.error('Error sending message:', error);
         showStatus('error', 'Sorry, there was an error sending your message. Please try again.');

@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects — Elorm Kofi Amelordzi</title>
-    <meta name="description" content="Projects by Elorm Kofi Amelordzi — web design, web apps, and more.">
+    <title>Projects — Elorm Kofi Amelordzi | Portfolio Showcase</title>
+    <meta name="description" content="View projects by Elorm Kofi Amelordzi — web development, web design, React applications, and more. Featured work in modern web technologies.">
+    <meta name="keywords" content="Elorm Kofi Amelordzi, projects, portfolio, web development, web design, React, JavaScript, HTML, CSS">
+    <link rel="canonical" href="https://elormamelordzi.github.io/projects.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="portfolio.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -33,17 +39,24 @@
     <section class="projects" style="margin-top: 70px;">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Featured Project</h2>
-                <p class="section-subtitle">My latest work in web development</p>
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">My latest work in web development and design</p>
+            </div>
+
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+                <button class="filter-btn" data-filter="javascript">JavaScript</button>
             </div>
 
             <div class="projects-grid">
                 <div class="project-card" data-category="web javascript">
                     <div class="project-image">
-                        <img src="https://humptydumpty-git.github.io/DSSC/assets/images/preview.jpg" alt="DSSC Project" onerror="this.src='https://via.placeholder.com/600x400/2563eb/ffffff?text=DSSC+Project'">
+                        <img src="https://humptydumpty-git.github.io/DSSC/assets/images/preview.jpg" alt="DSSC Project" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400/2563eb/ffffff?text=DSSC+Project'">
                         <div class="project-overlay">
-                            <a href="https://humptydumpty-git.github.io/DSSC/" target="_blank" rel="noopener" class="project-link"><i class="fas fa-link"></i></a>
-                            <a href="https://github.com/humptydumpty-git/DSSC" target="_blank" rel="noopener" class="project-link"><i class="fab fa-github"></i></a>
+                            <a href="https://humptydumpty-git.github.io/DSSC/" target="_blank" rel="noopener" class="project-link" aria-label="View DSSC Project"><i class="fas fa-link"></i></a>
+                            <a href="https://github.com/humptydumpty-git/DSSC" target="_blank" rel="noopener" class="project-link" aria-label="View DSSC Source Code"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                     <div class="project-content">
@@ -62,9 +75,131 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="project-card" data-category="web design">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/600x400/3b82f6/ffffff?text=Portfolio+Website" alt="Personal Portfolio Website" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="index.html" class="project-link" aria-label="View Portfolio Website"><i class="fas fa-link"></i></a>
+                            <a href="https://github.com/ElormAmelordzi" target="_blank" rel="noopener" class="project-link" aria-label="View Portfolio Source Code"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Personal Portfolio Website</h3>
+                        <p>A modern, responsive portfolio website showcasing my skills, projects, and professional journey. Built with semantic HTML5, advanced CSS3, and vanilla JavaScript, featuring smooth animations, interactive elements, and a clean, professional design.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Responsive Design</span>
+                            <span>UI/UX</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="index.html" class="btn btn-small">View Project</a>
+                            <a href="https://github.com/ElormAmelordzi" target="_blank" rel="noopener" class="btn btn-small btn-outline">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web javascript">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/600x400/10b981/ffffff?text=Web+Application" alt="Interactive Web Application" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" aria-label="View Web Application"><i class="fas fa-link"></i></a>
+                            <a href="https://github.com/ElormAmelordzi" target="_blank" rel="noopener" class="project-link" aria-label="View Source Code"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Interactive Web Application</h3>
+                        <p>An interactive web application featuring dynamic content loading, form validation, and real-time updates. Demonstrates proficiency in modern JavaScript patterns, DOM manipulation, and asynchronous programming.</p>
+                        <div class="project-tags">
+                            <span>JavaScript</span>
+                            <span>ES6+</span>
+                            <span>DOM Manipulation</span>
+                            <span>API Integration</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Coming Soon</a>
+                            <a href="https://github.com/ElormAmelordzi" target="_blank" rel="noopener" class="btn btn-small btn-outline">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/600x400/f59e0b/ffffff?text=Graphic+Design" alt="Graphic Design Portfolio" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" aria-label="View Design Portfolio"><i class="fas fa-link"></i></a>
+                            <a href="#" class="project-link" aria-label="View Behance"><i class="fab fa-behance"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Graphic Design Portfolio</h3>
+                        <p>A collection of graphic design projects including branding, logo design, and digital illustrations. Showcasing creative problem-solving skills and attention to visual detail in various design contexts.</p>
+                        <div class="project-tags">
+                            <span>Graphic Design</span>
+                            <span>Branding</span>
+                            <span>Logo Design</span>
+                            <span>Digital Art</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">View Portfolio</a>
+                            <a href="contact.html" class="btn btn-small btn-outline">Request Samples</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web design">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Landing+Page" alt="Landing Page Design" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" aria-label="View Landing Page"><i class="fas fa-link"></i></a>
+                            <a href="https://github.com/ElormAmelordzi" target="_blank" rel="noopener" class="project-link" aria-label="View Source Code"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Modern Landing Page</h3>
+                        <p>A conversion-optimized landing page designed with modern UI/UX principles. Features engaging hero sections, clear call-to-actions, and responsive design that works seamlessly across all devices.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>UI/UX Design</span>
+                            <span>Responsive</span>
+                            <span>Conversion Optimization</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Coming Soon</a>
+                            <a href="contact.html" class="btn btn-small btn-outline">Hire Me</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web javascript">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/600x400/ef4444/ffffff?text=React+App" alt="React Application" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" aria-label="View React App"><i class="fas fa-link"></i></a>
+                            <a href="https://github.com/ElormAmelordzi" target="_blank" rel="noopener" class="project-link" aria-label="View Source Code"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>React Web Application</h3>
+                        <p>A modern single-page application built with React, demonstrating component-based architecture, state management, and modern React hooks. Features include routing, API integration, and responsive design.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>JavaScript</span>
+                            <span>Component Architecture</span>
+                            <span>State Management</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Coming Soon</a>
+                            <a href="https://github.com/ElormAmelordzi" target="_blank" rel="noopener" class="btn btn-small btn-outline">View Code</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="text-center mt-8">
+            <div style="text-align: center; margin-top: 3rem;">
                 <p class="section-subtitle">Interested in collaboration? <a href="contact.html" class="btn btn-primary">Get In Touch</a></p>
             </div>
         </div>
