@@ -16,27 +16,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html">Elorm Kofi Amelordzi</a>
+                <a href="index.html" aria-label="Elorm Kofi Amelordzi - Home">Elorm Kofi Amelordzi</a>
             </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="projects.html" class="nav-link">Projects</a>
-                <a href="resume.html" class="nav-link">Resume</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+            <div class="nav-menu" id="nav-menu" role="menubar">
+                <a href="index.html" class="nav-link" role="menuitem" aria-label="Navigate to Home page">Home</a>
+                <a href="about.html" class="nav-link" role="menuitem" aria-label="Navigate to About page">About</a>
+                <a href="projects.html" class="nav-link" role="menuitem" aria-label="Navigate to Projects page">Projects</a>
+                <a href="resume.html" class="nav-link" role="menuitem" aria-label="Navigate to Resume page">Resume</a>
+                <a href="contact.html" class="nav-link" role="menuitem" aria-label="Navigate to Contact page">Contact</a>
             </div>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 
-    <section class="about" style="margin-top: 70px;">
+    <main id="main-content">
+    <section class="about" style="margin-top: 70px;" aria-label="About section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">About Me</h2>
@@ -187,18 +191,59 @@ With a strong background in Computer Networks Management, I bring a solid unders
         </div>
     </section>
 
-    <footer class="footer">
+    </main>
+    
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elorm Kofi Amelordzi</h3>
+                    <p>Frontend Developer & Web Designer</p>
+                    <p>Creating beautiful, responsive websites and digital solutions.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <nav aria-label="Footer navigation">
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="resume.html">Resume</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/elorm-kofi-amelordzi-3b4b00210" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/ElormAmelordzi" target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://wa.me/233240299683" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:humptyisme@gmail.com" aria-label="Send email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
                 <p>&copy; 2025 Elorm Kofi Amelordzi. All rights reserved.</p>
-                <p>Built with ❤️ and modern web technologies</p>
+                <p>Built with <span aria-label="love">❤️</span> and modern web technologies</p>
             </div>
         </div>
     </footer>
 
     <script src="app.js" defer></script>
-    <button id="back-to-top" title="Go to top">
-        <i class="fas fa-arrow-up"></i>
+    <button id="back-to-top" title="Go to top" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 </body>
 </html>

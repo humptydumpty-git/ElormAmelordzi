@@ -21,8 +21,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
+      const isExpanded = navMenu.classList.toggle('active');
       navToggle.classList.toggle('active');
+      
+      // Update ARIA attributes for accessibility
+      navToggle.setAttribute('aria-expanded', isExpanded);
+      navMenu.setAttribute('aria-hidden', !isExpanded);
+    });
+    
+    // Close menu on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navMenu.setAttribute('aria-hidden', 'true');
+        navToggle.focus();
+      }
     });
 
     // Close mobile menu when a nav link is clicked
@@ -30,8 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
         navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navMenu.setAttribute('aria-hidden', 'true');
       });
     });
+    
+    // Initialize ARIA attributes
+    navToggle.setAttribute('aria-expanded', 'false');
+    navMenu.setAttribute('aria-hidden', 'true');
   }
 
   // Scroll handler: back-to-top visibility + navbar style
